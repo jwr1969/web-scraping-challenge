@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data Scrape</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mars....the next frontier?</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Click for the latest!</a></p>
+    </div>
+
+    <!-- Phone Listings -->
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Latest Mars News</h1>
+        <h4 class="heading">{{listings.news_title}}</h4>
+        <p>{{listings.news_p}}</p>
+      </div>
+
+
+    <div class="row">
+      <div class="col-md-7">
+        <h1>Featured Mars Image</h1>
+        <img width="500" src="{{ listings.featured_image_url }}"/> 
+      </div>
+      <div class="col-md-5">
+        <h1>Mars Facts</h1>
+        {{ listings.data_table | safe }}
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+    <h4> Mars Hemispheres </h4>
+
+
+    </div>
+
+    <div class="row">
+      {% for item in listings.hemispheres_image_urls %}
+        <div class="col-md-3">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" width="200" src="{{ item.img_url }}" alt="Card image cap">
+            <div class="card-body">
+            <p class="card-text">{{ item.title }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+
+  </div>
+</body>
+
+</html>
